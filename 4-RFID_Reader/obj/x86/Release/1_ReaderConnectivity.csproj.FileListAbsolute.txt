@@ -1,0 +1,12 @@
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\ReaderConnectivity.exe
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\ReaderConnectivity.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\Impinj.OctaneSdk.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\LLRP.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\LLRP.Impinj.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\Impinj.OctaneSdk.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\Impinj.OctaneSdk.xml
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\LLRP.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Release\LLRP.Impinj.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Release\ReaderConnectivity.exe
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Release\ReaderConnectivity.pdb
