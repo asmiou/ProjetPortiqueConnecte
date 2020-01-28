@@ -1,0 +1,35 @@
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\ReaderConnectivity.exe
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\ReaderConnectivity.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.Impinj.dll
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.xml
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.Impinj.pdb
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.exe
+C:\Documents and Settings\lparker\Desktop\SDKUseCases_NoRev\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.exe
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\ReaderConnectivity.exe
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\ReaderConnectivity.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.xml
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.Impinj.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\1_ReaderConnectivity.csprojResolveAssemblyReference.cache
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.pdb
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.dll
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.dll
+C:\Users\lparker\Desktop\Impinj Training Files\Day2\OctaneSdk2UseCases\ReaderConnectivity\bin\Debug\LLRP.Impinj.dll
+C:\Users\lparker\Desktop\Impinj Training Files\SDK_SpeedwayConnect\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.exe
+C:\Users\lparker\Desktop\Impinj Training Files\SDK_SpeedwayConnect\OctaneSdk2UseCases\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.exe
+C:\Users\jskinner\Desktop\ReaderConnectivity\obj\x86\Debug\ReaderConnectivity.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\ReaderConnectivity.exe
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\ReaderConnectivity.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.xml
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\LLRP.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\bin\Debug\LLRP.Impinj.pdb
+C:\Users\jskinner\Desktop\ReaderConnectivity\obj\x86\Debug\1_ReaderConnectivity.csprojResolveAssemblyReference.cache
