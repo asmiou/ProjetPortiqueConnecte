@@ -171,5 +171,9 @@ namespace OctaneSdkUseCases
                 Console.WriteLine("EPC : {0} Timestamp : {1}", tag.Epc, tag.LastSeenTime);
             }
         }
+    
+        static void exportCsvData(){
+            
+        }
     }
 }
