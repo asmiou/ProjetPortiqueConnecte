@@ -13,28 +13,46 @@ namespace WebService_RFIDReader.Controllers
         Services.LoadSettings setting;
         Models.Reader myReader;
         Models.Antenna antenna;
+        Services.ImpinjReaderService readerService;
 
         public DriverApiController()
         {
             setting = new Services.LoadSettings();
             myReader = setting.reader;
             antenna = setting.antenna;
+            readerService = new Services.ImpinjReaderService(myReader, antenna);
 
         }
 
         [HttpGet]
         [Route("start")]
-        public string start()
+        public void start()
         {
-            string s = myReader.ipAdress;
-            return s;
+            try
+            {
+                readerService.startScan();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+            
         }
 
         [HttpGet]
         [Route("stop")]
-        public Boolean stop()
+        public void stop()
         {
-            return false;
+            try
+            {
+                readerService.stopScan();
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            
+            
         }
     }
 }
