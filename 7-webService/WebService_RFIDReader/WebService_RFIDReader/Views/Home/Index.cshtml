@@ -1,0 +1,47 @@
+﻿<div class="jumbotron">
+    <h3>RFID Classifier</h3>
+    <p class="lead">Ceci est un projet de fin d'étude, qui consiste à mettre en place un algorithme de classification des tags RFID lus par un 
+    lecteur. 
+    </p>
+    <p>
+        <h3>Problématique</h3>
+        Les  portiques  connectés  équipés  de  la  technologie  RFID  UHF  permettent
+        d’identifier unitairement et en aveugle plusieurs unités comportant un tag RFID
+        UHF.
+        Le fait de les placer aux entrées/sorties des entrepôts nous permet de confirmer
+        des entrées/sorties du stock, contrôle qualitatif et quantitatif des articles reçus ou
+        expédiés ainsi que le suivi du support et des emballages réutilisables (palettes,
+        bacs, etc.).
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h4>READER Impinj R420</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <img src="~/Content/reader.jpg" alt="Reader" style="height: 250px; width: 300px;" />
+            </li>
+            <li class="list-group-item">ID: 1</li>
+            <li class="list-group-item">HostName: 192.168.0.20</li>
+            <li class="list-group-item">Session: 1</li>
+            <li class="list-group-item">Mode: Dual Target</li>
+            <li class="list-group-item">Power: 27</li>
+            <li class="list-group-item">Sensibility: -70</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4>Schema</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <img src="~/Content/portique.png" alt="Reader" style="height: 250px; width: 300px;" />
+            </li>
+            <li class="list-group-item">Antenna: 4</li>
+            <li class="list-group-item">Type Tags: 4</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4>Api request</h4>
+        <p class="badge badge-dark" >/api/reader/start</p>
+        <p class="badge badge-dark" >/api/reader/stop</p>
+    </div>
+</div>
