@@ -1,7 +1,7 @@
 {
   //Reader config
   "readerId": 1,
-  "ipAdress": "192.168.0.21",
+  "ipAdress": "192.168.0.20",
   "maxConnectionAttempts": 15,
   "connectTimeout": 6000,
   "nbAntenna": 4,

@@ -8,21 +8,25 @@ using Impinj.OctaneSdk;
 
 namespace WebService_RFIDReader.Services
 {
-    
+
     public class ImpinjReaderService
     {
         static ImpinjReader reader = new ImpinjReader();
         Models.Reader myReader;
         Models.Antenna myAntenna;
-        
-        public static List<Models.TagRead> listTags = new List<Models.TagRead>();
-        
-        public ImpinjReaderService(Models.Reader r, Models.Antenna a){
+        static string delimit = ";";
+        public string prefixPath { set; get; }
+
+        public static List<string[]> listTags = new List<string[]>();
+
+        public ImpinjReaderService(Models.Reader r, Models.Antenna a)
+        {
             myReader = r;
             myAntenna = a;
         }
 
-        private void configureReader(){
+        private void configureReader()
+        {
             try
             {
                 Settings settings = reader.QueryDefaultSettings();
@@ -55,7 +59,7 @@ namespace WebService_RFIDReader.Services
                 reader.SaveSettings();
                 reader.TagsReported += OnTagsReported;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -82,7 +86,8 @@ namespace WebService_RFIDReader.Services
             }
         }
 
-        private void ConnectToReader(){
+        public void ConnectToReader()
+        {
             try
             {
                 reader.Name = "Reader Impinj R420 N#-" + myReader.readerId;
@@ -96,42 +101,48 @@ namespace WebService_RFIDReader.Services
             }
         }
 
-        private void OnConnectionLost(ImpinjReader reader){
+        private void OnConnectionLost(ImpinjReader reader)
+        {
             reader.Disconnect();
             ConnectToReader();
         }
 
         private void OnKeepaliveReceived(ImpinjReader reader)
         {
-           // Console.WriteLine("Keepalive received from {0} ({1})", reader.Name, reader.Address);
+            // Console.WriteLine("Keepalive received from {0} ({1})", reader.Name, reader.Address);
         }
 
         static void OnTagsReported(ImpinjReader sender, TagReport report)
         {
             foreach (Tag tag in report)
             {
-                Models.TagRead t = new Models.TagRead(tag.LastSeenTime.ToString(), tag.Epc.ToString(), tag.PeakRssiInDbm, tag.AntennaPortNumber); 
+                //Models.TagRead t = new Models.TagRead(tag.LastSeenTime.ToString(), tag.Epc.ToString(), tag.PeakRssiInDbm, tag.AntennaPortNumber); 
+                //listTags.Add(t);
+                string[] t = { tag.Epc + delimit + tag.PeakRssiInDbm + delimit + tag.LastSeenTime + delimit + tag.AntennaPortNumber };
                 listTags.Add(t);
+
             }
         }
 
-        private void saveOnfile(){
-            string today = DateTime.Now.ToString().Replace('/', '_').Replace(':', '-').Replace(' ', 'H');
+        private void saveOnfile()
+        {
+            //string today = DateTime.Now.ToString().Replace('/', '_').Replace(':', '-').Replace(' ', 'H');
+            string today = DateTime.Now.ToString("yyyyMMddHHmmss");
             string appDataFolder = HttpContext.Current.Server.MapPath("~/App_Data/1-RawData/");
 
             string filename = "scan";
-            string filepath = appDataFolder + filename + "-" + today + ".csv";
-            string delimit = ",";
+            string filepath = appDataFolder + today + "_" + filename + ".csv";
+
             try
             {
                 var file = File.CreateText(filepath);
                 foreach (var t in listTags)
                 {
-                    string line = t.ecp + delimit + t.rssi + delimit + t.timesTamp + delimit + t.antenna;
                     file.WriteLine(string.Join(delimit, t));
                 }
+                prefixPath = today;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -148,7 +159,7 @@ namespace WebService_RFIDReader.Services
         public void startScan()
         {
             Console.WriteLine("Started");
-            ConnectToReader();
+            //ConnectToReader();
             configureReader();
         }
     }
