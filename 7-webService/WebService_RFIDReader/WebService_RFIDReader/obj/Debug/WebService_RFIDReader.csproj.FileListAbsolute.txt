@@ -98,3 +98,17 @@ D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Renci.SshNet.dll
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Impinj.OctaneSdk.xml
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Renci.SshNet.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Modules.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.SQLite.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Wpf.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Dynamic.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.Metadata.dll
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Modules.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.SQLite.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Wpf.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Dynamic.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.xml
+D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.Metadata.xml

@@ -1046,6 +1046,11 @@
             Always returns true.
             </summary>
         </member>
+        <member name="P:Impinj.OctaneSdk.FeatureSet.MaxTagSelectFiltersAllowed">
+            <summary>
+            The maximum number of tag select filters allowed per query. 
+            </summary>
+        </member>
         <member name="P:Impinj.OctaneSdk.FeatureSet.IsGpiDebounceAvailable">
             <summary>
             Always returns true.
@@ -1107,7 +1112,14 @@
         </member>
         <member name="P:Impinj.OctaneSdk.FeatureSet.ReaderModes">
             <summary>
+            OBSOLETE : ReaderModes is no longer supported. Use RfModes instead.
+            
             A readonly list of reader modes supported by the connected reader.
+            </summary>
+        </member>
+        <member name="P:Impinj.OctaneSdk.FeatureSet.RfModes">
+            <summary>
+            A readonly list of RF modes supported by the connected reader.
             </summary>
         </member>
         <member name="M:Impinj.OctaneSdk.FeatureSet.#ctor">
@@ -1158,6 +1170,11 @@
         <member name="F:Impinj.OctaneSdk.TagFilterMode.Filter1OrFilter2">
             <summary>
             Filter on conditions defined in Filters 2 OR 2.
+            </summary>
+        </member>
+        <member name="F:Impinj.OctaneSdk.TagFilterMode.UseTagSelectFilters">
+            <summary>
+            Filter on conditions defined in the tag select filter list.
             </summary>
         </member>
         <member name="T:Impinj.OctaneSdk.FilterSettings">
@@ -3065,6 +3082,11 @@
             Speedway R120
             </summary>
         </member>
+        <member name="F:Impinj.OctaneSdk.ReaderModel.R700">
+            <summary>
+            R700
+            </summary>
+        </member>
         <member name="T:Impinj.OctaneSdk.ReaderStartedEvent">
             <summary>
             Class used to encapsulate the details of a
@@ -3528,53 +3550,77 @@
             </summary>
         </member>
         <member name="T:Impinj.OctaneSdk.ReaderMode">
-            <summary>
-            Enum defining the configured Reader mode, which controls the modulation
-            and data rate for the the link between the reader and the tags.
-            AutoSetDenseReader is recommended as the most robust mode. Not all modes
-            are available on all models and regions.
-            </summary>
+             <summary>
+             OBSOLETE : The ReaderMode enum has been deprecated as a means to select
+             the reader's RF mode. Use the Settings.RfMode value instead.
+            
+             Enum defining the configured Reader mode, which controls the modulation
+             and data rate for the the link between the reader and the tags.
+             AutoSetDenseReader is recommended as the most robust mode. Not all modes
+             are available on all models and regions.
+             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.MaxThroughput">
-            <summary>
-            Fastest possible data transfer rates between tag and reader when
-            the population of readers is very low and the likelihood of
-            interference between readers is very low.
-            </summary>
+             <summary>
+             OBSOLETE : This ReaderMode is no longer supported. Use the
+             Settings.RfMode value instead.
+            
+             Fastest possible data transfer rates between tag and reader when
+             the population of readers is very low and the likelihood of
+             interference between readers is very low.
+             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.Hybrid">
-            <summary>
-            Provides a fast read rate when there is modest interference from
-            other readers, but a low likelihood of co-channel, adjacent-channel,
-            or alternate-channel interferers.
-            </summary>
+             <summary>
+             OBSOLETE : This ReaderMode is no longer supported. Use the
+             Settings.RfMode value instead.
+            
+             Provides a fast read rate when there is modest interference from
+             other readers, but a low likelihood of co-channel, adjacent-channel,
+             or alternate-channel interferers.
+             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.DenseReaderM4">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             Provides an intermediate read rate when the population of readers is
             large and the likelihood of interference is high.
             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.DenseReaderM8">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             Provides a low read rate (~half that of DenseReaderM4) for extreme
             interference environments where tags are stationary or moving slowly.
             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.MaxMiller">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             Provides maximum reliability and read rate when the population of
             readers is low and the likelihood of interference is low.
             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.DenseReaderM4Two">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             Faster Forward link than Mode 2, available with regions: ETSI, 
             China, India, Japan (916.7-920.9 MHz and 952-956 MHz), Korea, and South Africa.
             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.AutoSetDenseReader">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             The reader monitors RF noise and interference and then automatically and 
             continuously optimizes the reader’s configuration, selecting the appropriate 
             configuration settings for the best, most reliable performance for environments 
@@ -3583,6 +3629,9 @@
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.AutoSetDenseReaderDeepScan">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             The reader monitors RF noise and interference and then automatically and 
             continuously optimizes the reader’s configuration, selecting the appropriate 
             configuration settings for the best, most reliable performance for environments 
@@ -3591,12 +3640,18 @@
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.AutoSetStaticFast">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             A refinement of AutoSetDenseReaderDeepScan, targeted toward static environments
             where difficult to read tags are not expected.
             </summary>
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.AutoSetStaticDRM">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             A refinement of AutoSetDenseReaderDeepScan, targeted toward static environments
             where difficult to read tags are expected and we are ready to sacrifice 
             performance to ensure that they are read
@@ -3604,6 +3659,9 @@
         </member>
         <member name="F:Impinj.OctaneSdk.ReaderMode.AutoSetCustom">
             <summary>
+            OBSOLETE : This ReaderMode is no longer supported. Use the
+            Settings.RfMode value instead.
+            
             Reserved for future use
             </summary>
         </member>
@@ -3691,8 +3749,15 @@
             </summary>
         </member>
         <member name="P:Impinj.OctaneSdk.Settings.ReaderMode">
+             <summary>
+             OBSOLETE : ReaderMode is no longer supported. Use RfMode instead.
+            
+             The selected reader mode for this configuration.
+             </summary>
+        </member>
+        <member name="P:Impinj.OctaneSdk.Settings.RfMode">
             <summary>
-            The selected reader mode for this configuration.
+            The selected common RF mode for this configuration.
             </summary>
         </member>
         <member name="P:Impinj.OctaneSdk.Settings.SearchMode">
@@ -5453,6 +5518,82 @@
         <member name="P:Impinj.OctaneSdk.XArrayConfig.Direction">
             <summary>
             Contains the xArray direction configuration.
+            </summary>
+        </member>
+        <member name="T:OctaneSdk.Impinj.OctaneSdk.StateUnawareAction">
+            <summary>
+            The action to perform when a tag filter matches or doesn't match
+            </summary>
+        </member>
+        <member name="F:OctaneSdk.Impinj.OctaneSdk.StateUnawareAction.Select">
+            <summary>
+            Assert the selected flag
+            </summary>
+        </member>
+        <member name="F:OctaneSdk.Impinj.OctaneSdk.StateUnawareAction.Unselect">
+            <summary>
+            Deassert the selected flag
+            </summary>
+        </member>
+        <member name="F:OctaneSdk.Impinj.OctaneSdk.StateUnawareAction.DoNothing">
+            <summary>
+            Leave the selected flag as it is
+            </summary>
+        </member>
+        <member name="T:OctaneSdk.Impinj.OctaneSdk.StateUnawareActionPair">
+            <summary>
+            This is a class for containing a StateUnawareAction pair with a matching and non-matching action
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.StateUnawareActionPair.MatchingAction">
+            <summary>
+            The action to perform when the tag filter matches.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.StateUnawareActionPair.NonMatchingAction">
+            <summary>
+            The action to perform when the tag filter does not match.
+            </summary>
+        </member>
+        <member name="T:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter">
+            <summary>
+            Class for containing a tag select for a single inventory filter
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.TagMask">
+            <summary>
+            The tag mask defines the bit pattern that the filter must match on.
+            The mask should be expressed as a hex string.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.BitPointer">
+            <summary>
+            The bit offset in the specified memory bank at which the tag mask
+            begins. It is important to note that this is a bit offset and need 
+            not be word or even byte-aligned.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.BitCount">
+            <summary>
+            The length of the mask in bits.
+            If no length is specified, the entire mask is used.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.MemoryBank">
+            <summary>
+            The memory bank on which the filter is applied. Filters may be
+            configured to search for content in the Epc, Tid, and User memory
+            banks. Filters may not match against the Reserved memory bank.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.MatchAction">
+            <summary>
+            The action to perform when the tag filter matches.
+            </summary>
+        </member>
+        <member name="P:OctaneSdk.Impinj.OctaneSdk.TagSelectFilter.NonMatchAction">
+            <summary>
+            The action to perform when the tag filter does not match.
             </summary>
         </member>
     </members>
