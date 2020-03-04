@@ -1,0 +1,4 @@
+// 11/02/2020 15:06:20
+// AntennaIDs=1,2,3,4, InventoryMode=Dual_Target, ModeIndex=1000, Population=32, PowerIndex=61, Session=1, ReaderName=192.168.0.10
+// Timestamp, EPC, Antenna, RSSI, Channel, Address
+1581421224860519,7336CEF1C1FE3682DEA1004F,3,-61,865.7,192.168.0.10
