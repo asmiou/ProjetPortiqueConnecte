@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,7 +17,9 @@ namespace WebService_RFIDReader.Controllers
         Models.Reader myReader;
         Models.Antenna antenna;
         Services.ImpinjReaderService readerService;
-        Services.RunPythonScript pythonService;
+        Services.RunPythonScript_Old pythonService;
+        Services.RunPythonScript runPython;
+
 
 
         public DriverApiController()
@@ -25,7 +28,8 @@ namespace WebService_RFIDReader.Controllers
             //myReader = setting.reader;
             //antenna = setting.antenna;
             //readerService = new Services.ImpinjReaderService(myReader, antenna);
-            pythonService = new Services.RunPythonScript();
+            pythonService = new Services.RunPythonScript_Old();
+            runPython = new Services.RunPythonScript();
 
 
         }
@@ -64,17 +68,29 @@ namespace WebService_RFIDReader.Controllers
 
                 //pythonService.hello();
                 string path = HostingEnvironment.MapPath(@"~/Assets");
+                //runPython.buildDataSet(path, "20200310142930");
+                runPython.predictData(path, "20200310142930");
 
-                
-                if (pythonService.buildDataSet(path, "20200310142930"))
+                /*
+                if (runPython.buildDataSet(path, "20200310142930"))
                 {
-                    Console.WriteLine("executed...");
+                    Debug.WriteLine("data builded...");
+
+                    if (runPython.predictData(path, "20200310142930"))
+                    {
+                        Debug.WriteLine("data predicted...");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("data not predict...");
+                    }
+                    
                 }
                 else
                 {
-                    Console.WriteLine("no executed...");
+                    Debug.WriteLine("data not build...");
                 }
-                Console.WriteLine("stopped...");
+                */
 
             }
             catch (Exception e)
@@ -82,38 +98,6 @@ namespace WebService_RFIDReader.Controllers
                 throw e;
             }
             
-        }
-
-        private void buildDataSet(string rawDataPath)
-        {
-            string loc = HttpContext.Current.Server.MapPath("~/App_Data/11-RawData/");
-            try
-            {
-                //pythonService.buildDataSet(loc+rawDataPath);
-            }catch(Exception e)
-            {
-                throw e;
-            }
-            
-        }
-
-        private void knnPredict(string trainSet, string testSet, string dataSet)
-        {
-            try
-            {
-                string loc = HttpContext.Current.Server.MapPath("~/App_Data/2-TransformedData/");
-                pythonService.predictByKnn(loc+trainSet, loc + testSet, loc + dataSet);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-        }
-
-        private void UploadData()
-        {
-
         }
     }
 }

@@ -1,99 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
-using IronPython.Hosting;
-using IronPython.Runtime;
-using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 
 namespace WebService_RFIDReader.Services
 {
     public class RunPythonScript
     {
+        static ProcessStartInfo psi;
+
         static ScriptEngine engine;
 
         static ScriptRuntimeSetup setup;
 
         static ScriptRuntime runtime;
+
         public RunPythonScript()
         {
-            
-            setup = Python.CreateRuntimeSetup(null);
-            runtime = new ScriptRuntime(setup);
-            //engine = Python.CreateEngine(runtime);
-            //engine = Python.CreateEngine();
-            engine = runtime.GetEngine("python");
-        }
-
-        public void hello()
-        {
-            try
-            {
-                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Assets/hello.py");
-                ScriptSource source = engine.CreateScriptSourceFromFile(path);
-                //ScriptScope scope = engine.Runtime.CreateScope();
-                //scope.SetVariable("rawData", rawDataPath);
-
-                source.Execute();
-                //return scope.GetVariable("prefixPath");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Erreur: " + e.Message);
-                throw e;
-            }
-
-            //return "cheminVersLeDataSetCrée";
+            psi = new ProcessStartInfo();
+            psi.FileName = @"E:\ProgramFiles\Anaconda3\python.exe";
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
         }
 
         public Boolean buildDataSet(string rawDataPath, string token)
         {
-            try
-            {
-                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Assets/buildDataSet.py");
-                ScriptSource source = engine.CreateScriptSourceFromFile(path);
-                ScriptScope scope = engine.Runtime.CreateScope();
-                scope.SetVariable("rawData", rawDataPath);
+            var script = System.Web.Hosting.HostingEnvironment.MapPath("~/Assets/buildDataSet.py");
+            psi.Arguments = $"\"{script}\" \"{rawDataPath}\" \"{token}\"";
 
-                scope.SetVariable("token", token);
+            var errors = "";
+            var results = "";
 
-                source.Execute(scope);
-                return scope.GetVariable("executed");
-            }
-            catch(Exception e)
+            using (var process = Process.Start(psi))
             {
-                Console.WriteLine("Erreur: " + e.Message);
-                throw e;
+                errors = process.StandardError.ReadToEnd();
+                results = process.StandardOutput.ReadToEnd();
             }
 
-        
+            Debug.WriteLine("Errors : ");
+            Debug.WriteLine(errors);
+            Debug.WriteLine("");
+            Debug.WriteLine("Resultats");
+            Debug.WriteLine(results);
+
+            return errors.Length>0?false:true;
         }
 
-        public string predictByKnn(string trainSetPath, string testSetPath, string dataSetPath)
+        public Boolean predictData(string dataSetPath, string token)
         {
-            string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Assets/knn.py");
-            ScriptSource source = engine.CreateScriptSourceFromFile(path);
-            ScriptScope scope = engine.Runtime.CreateScope();
-            scope.SetVariable("trainSet", trainSetPath);
-            scope.SetVariable("testSet", testSetPath);
-            scope.SetVariable("dataSet", dataSetPath);
+            var script = System.Web.Hosting.HostingEnvironment.MapPath("~/Assets/predict.py");
+            psi.Arguments = $"\"{script}\" \"{dataSetPath}\" \"{token}\"";
 
-            //engine.ExecuteFile(path);
-            source.Execute(scope);
-            //scope.Engine.Runtime.Shutdown();
+            var errors = "";
+            var results = "";
 
-            return scope.GetVariable("predictPath");
-           
-            
-            //return "chaminVersLesDonnéesPredites";
+            using (var process = Process.Start(psi))
+            {
+                errors = process.StandardError.ReadToEnd();
+                results = process.StandardOutput.ReadToEnd();
+            }
+
+            Debug.WriteLine("Errors : ");
+            Debug.WriteLine(errors);
+            Debug.WriteLine("");
+            Debug.WriteLine("Resultats");
+            Debug.WriteLine(results);
+
+            return errors.Length > 0 ? false : true;
         }
-
-        public string predictByKmeans()
-        {
-            return "chaminVersLesDonnéesPredites";
-        }
-
-
     }
 }

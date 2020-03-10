@@ -1,16 +1,17 @@
 ﻿#Import library
-
 import pandas as pd
-#import numpy as np
+import sys
 
 #parameters
-appData=''
-token=''
+appData=sys.argv[1]
+token=sys.argv[2]
 executed=False
 
 #Import Data
-n=['TimesTamp', 'ECP', 'Antenna', 'RSSI']
-p=appData+'/11-RawData/'+token+'.csv'
+#n=['TimesTamp','ECP', 'Antenna', 'RSSI']
+n=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
+p=appData+'/1-RawData/'+token+'.csv'
+print(p)
 d=','
 
 def importData(path, delimit,cols):
@@ -18,16 +19,18 @@ def importData(path, delimit,cols):
 
 data=importData(p,d,n)
 
+print("imported...")
 # TYPAGE DES CHAMPS
 def typage(data):
     data['ECP']=data['ECP'].astype(str)
     data['TimesTamp']=data['TimesTamp'].astype('int64')
     data['RSSI']=data['RSSI'].astype('float64')
     data['Antenna']=data['Antenna'].astype('int64')
-    data['FP']=data['FP'].astype('int64')
     return data
 
 data=typage(data)
+
+print("typed...")
 
 #Build DataSet
 from scipy.stats import variation 
@@ -39,7 +42,6 @@ def generateDataSet(data, groupedBy):
     
     #Création des variables intermédiaire pour la récupération des champs
     ecp=pd.Series(grouped_df.ECP.unique().index,name="ECP")
-    fp=pd.Series(grouped_df.FP.max(),name="FP")
     rc= pd.Series(grouped_df.ECP.count(),name="readcount")
     minRSSI= pd.Series(grouped_df.RSSI.min(),name="minRssi")
     maxRSSI= pd.Series(grouped_df.RSSI.max(),name="maxRssi")
@@ -79,11 +81,12 @@ def generateDataSet(data, groupedBy):
     dataSet['A2']=pd.Series(a2).values
     dataSet['A3']=pd.Series(a3).values
     dataSet['A4']=pd.Series(a4).values
-    dataSet['FP']=fp.values
     
     return dataSet
 
 dataSet=generateDataSet(data,'ECP')
+
+print("build dataset...")
 
 #Export Data
 def exportData(data, path):
@@ -93,4 +96,5 @@ def exportData(data, path):
 exportPath = appData+'/2-DataSet/'+token+'.csv'
 exportData(dataSet, exportPath)
 
+print("exported...")
 executed=True
