@@ -18,6 +18,9 @@ namespace WebService_RFIDReader.Services
         public string prefixPath { set; get; }
 
         public static List<string[]> listTags = new List<string[]>();
+        public static List<Models.TagRead> modelTags = new List<Models.TagRead>();
+        public static string today { set; get; }
+
 
         public ImpinjReaderService(Models.Reader r, Models.Antenna a)
         {
@@ -116,18 +119,18 @@ namespace WebService_RFIDReader.Services
         {
             foreach (Tag tag in report)
             {
-                //Models.TagRead t = new Models.TagRead(tag.LastSeenTime.ToString(), tag.Epc.ToString(), tag.PeakRssiInDbm, tag.AntennaPortNumber); 
-                //listTags.Add(t);
+                Models.TagRead myTags = new Models.TagRead(tag.LastSeenTime.ToString(), tag.Epc.ToString(), tag.PeakRssiInDbm, tag.AntennaPortNumber);
+                modelTags.Add(myTags);
+
                 string[] t = { tag.Epc + delimit + tag.PeakRssiInDbm + delimit + tag.LastSeenTime + delimit + tag.AntennaPortNumber };
                 listTags.Add(t);
-
             }
         }
 
         private void saveOnfile()
         {
             //string today = DateTime.Now.ToString().Replace('/', '_').Replace(':', '-').Replace(' ', 'H');
-            string today = DateTime.Now.ToString("yyyyMMddHHmmss");
+            today = DateTime.Now.ToString("yyyyMMddHHmmss");
             string appDataFolder = HttpContext.Current.Server.MapPath("~/App_Data/1-RawData/");
 
             string filename = "scan";
@@ -161,6 +164,11 @@ namespace WebService_RFIDReader.Services
             Console.WriteLine("Started");
             //ConnectToReader();
             configureReader();
+        }
+
+        public void count()
+        {
+
         }
     }
 }

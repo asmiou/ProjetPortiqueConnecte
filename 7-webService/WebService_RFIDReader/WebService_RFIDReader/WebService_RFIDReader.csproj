@@ -200,7 +200,7 @@
     <Compile Include="Models\Reader.cs" />
     <Compile Include="Models\TagRead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CallPythonScript.cs" />
+    <Compile Include="Services\RunPythonScript.cs" />
     <Compile Include="Services\ImpinjReaderService.cs" />
     <Compile Include="Services\LoadSettings.cs" />
   </ItemGroup>
@@ -257,7 +257,10 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Assets\settings.json" />
-    <Content Include="Assets\knn.py" />
+    <Content Include="Assets\predict.py" />
+    <Content Include="Assets\hello.py" />
+    <Content Include="Assets\buildDataSet.py" />
+    <Content Include="Assets\11-RawData\20200310142930.csv" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -363,6 +366,7 @@
   <ItemGroup>
     <Folder Include="App_Data\1-RawData\" />
     <Folder Include="App_Data\2-TransformedData\" />
+    <Folder Include="Assets\2-DataSet\" />
     <Folder Include="Views\Driver\" />
   </ItemGroup>
   <ItemGroup>

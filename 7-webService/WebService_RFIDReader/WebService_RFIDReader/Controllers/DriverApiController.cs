@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace WebService_RFIDReader.Controllers
@@ -15,16 +16,17 @@ namespace WebService_RFIDReader.Controllers
         Models.Reader myReader;
         Models.Antenna antenna;
         Services.ImpinjReaderService readerService;
-        Services.CallPythonScript pythonService;
-        
+        Services.RunPythonScript pythonService;
+
 
         public DriverApiController()
         {
-            setting = new Services.LoadSettings();
-            myReader = setting.reader;
-            antenna = setting.antenna;
-            readerService = new Services.ImpinjReaderService(myReader, antenna);
-            pythonService = new Services.CallPythonScript();
+            //setting = new Services.LoadSettings();
+            //myReader = setting.reader;
+            //antenna = setting.antenna;
+            //readerService = new Services.ImpinjReaderService(myReader, antenna);
+            pythonService = new Services.RunPythonScript();
+
 
         }
 
@@ -34,8 +36,9 @@ namespace WebService_RFIDReader.Controllers
         {
             try
             {
-                readerService.ConnectToReader();
-                readerService.startScan();
+                //readerService.ConnectToReader();
+                //readerService.startScan();
+                System.Diagnostics.Debug.WriteLine("Started...");
             }
             catch (Exception e)
             {
@@ -51,15 +54,30 @@ namespace WebService_RFIDReader.Controllers
         {
             try
             {
-                readerService.stopScan();
-                string rawData = readerService.prefixPath + "_scan.csv";
-                buildDataSet(rawData);
-                string train = readerService.prefixPath + "_trainSet.csv";
-                string test = readerService.prefixPath + "_testSet.csv";
-                string dataSet = readerService.prefixPath + "_dataSet.csv";
-                knnPredict(train, test, dataSet);
+                //readerService.stopScan();
+                //string rawData = readerService.prefixPath + "_scan.csv";
+                //buildDataSet(rawData);
+                //string train = readerService.prefixPath + "_trainSet.csv";
+                //string test = readerService.prefixPath + "_testSet.csv";
+                //string dataSet = readerService.prefixPath + "_dataSet.csv";
+                //knnPredict(train, test, dataSet);
+
+                //pythonService.hello();
+                string path = HostingEnvironment.MapPath(@"~/Assets");
+
+                
+                if (pythonService.buildDataSet(path, "20200310142930"))
+                {
+                    Console.WriteLine("executed...");
+                }
+                else
+                {
+                    Console.WriteLine("no executed...");
+                }
+                Console.WriteLine("stopped...");
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -68,10 +86,10 @@ namespace WebService_RFIDReader.Controllers
 
         private void buildDataSet(string rawDataPath)
         {
-            string loc = HttpContext.Current.Server.MapPath("~/App_Data/1-RawData/");
+            string loc = HttpContext.Current.Server.MapPath("~/App_Data/11-RawData/");
             try
             {
-                pythonService.buildDataSet(loc+rawDataPath);
+                //pythonService.buildDataSet(loc+rawDataPath);
             }catch(Exception e)
             {
                 throw e;
