@@ -68,8 +68,9 @@ namespace WebService_RFIDReader.Controllers
 
                 //pythonService.hello();
                 string path = HostingEnvironment.MapPath(@"~/Assets");
+                runPython.exectScript(path, "20200310142930");
                 //runPython.buildDataSet(path, "20200310142930");
-                runPython.predictData(path, "20200310142930");
+                //runPython.predictData(path, "20200310142930");
 
                 /*
                 if (runPython.buildDataSet(path, "20200310142930"))
