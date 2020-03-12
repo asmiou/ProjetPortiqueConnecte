@@ -8,8 +8,12 @@ from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
-cols=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
-delimitor=','
+cols=['ECP','RSSI','TimesTamp', 'Antenna']
+delimitor=';'
+
+
+#cols=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
+#delimitor=','
 TOKEN=""
 PATH=""
 data = ""
@@ -23,10 +27,10 @@ def importData(path, delimit,cols):
 
 # TYPAGE DES CHAMPS
 def typage(data):
-    data['ECP']=data['ECP'].astype(str)
+    #data['ECP']=data['ECP'].astype(str)
     data['TimesTamp']=data['TimesTamp'].astype('int64')
     data['RSSI']=data['RSSI'].astype('float64')
-    data['Antenna']=data['Antenna'].astype('int64')
+    #data['Antenna']=data['Antenna'].astype('int64')
     return data
 
 #Build dataSet
@@ -94,38 +98,46 @@ def exportData(data, path):
 def predictFromUrl():
     TOKEN = req.args.get('token')
     PATH="./1-RawData/"+TOKEN+".csv"
+    print(PATH)
+   # try:
+    #Chargement des données
+    data=importData(PATH,delimitor,cols)
+    print("imported...", len(data))
+    print(data.head(5))
 
-    try:
-        #Chargement des données
-        data=importData(PATH,delimitor,cols)
+    #typage des données
+    data=typage(data)
+    print("typed...")
 
-        #typage des données
-        data=typage(data)
+    #Regroupement par ECP
+    dataSet=generateDataSet(data,'ECP')
+    print("regrouped..." , len(dataSet))
 
-        #Regroupement par ECP
-        dataSet=generateDataSet(data,'ECP')
+    #Mise en echelle
+    X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
+    print("xpredict...")
 
-        #Mise en echelle
-        X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
+    #LoadModel
+    knnModel = pickle.load(open(knnFilename, 'rb'))
+    print("model loaded...")
+    #Prediction knn
+    knn_pred = knnModel.predict(X_toPredict)
+    print("predicted...")
 
-        #LoadModel
-        knnModel = pickle.load(open(knnFilename, 'rb'))
+    #Rajout de la dataSet
+    dataSet['FP_KNN']=knn_pred
+    print("dataset predict...", dataSet.shape)
 
-        #Prediction knn
-        knn_pred = knnModel.predict(X_toPredict)
+    #Export des données
+    exportPath = './3-PredictedData/'+TOKEN+'.csv'
+    exportData(dataSet, exportPath)
+    print("exported...")
 
-        #Rajout de la dataSet
-        dataSet['FP_KNN']=knn_pred
-
-        #Export des données
-        exportPath = './3-PredictedData/'+TOKEN+'.csv'
-        exportData(dataSet, exportPath)
-
-        print("Done...")
-        return make_response(jsonify({'message':'Prediction successfull', 'code':200}),200)
-    except:
-        print("Error found...")
-        return make_response(jsonify({'message':'Error script python', 'code':500}),500)
+    print("Done...")
+    return make_response(jsonify({'message':'Prediction successfull', 'code':200}),200)
+   # except:
+   #     print("Error found...")
+    #    return make_response(jsonify({'message':'Error script python', 'code':500}),500) '''
 
 
 app.run(debug=True)
