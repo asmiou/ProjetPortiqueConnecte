@@ -17,7 +17,6 @@ namespace WebService_RFIDReader.Controllers
         Models.Reader myReader;
         Models.Antenna antenna;
         Services.ImpinjReaderService readerService;
-        Services.RunPythonScript_Old pythonService;
         Services.RunPythonScript runPython;
 
 
@@ -28,7 +27,6 @@ namespace WebService_RFIDReader.Controllers
             //myReader = setting.reader;
             //antenna = setting.antenna;
             //readerService = new Services.ImpinjReaderService(myReader, antenna);
-            pythonService = new Services.RunPythonScript_Old();
             runPython = new Services.RunPythonScript();
 
 

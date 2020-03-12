@@ -112,9 +112,6 @@ D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Dynamic.xml
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.xml
 D:\M2-SSIO\S1\Projet Protique connecté\Code\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.Metadata.xml
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.csprojAssemblyReference.cache
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.dll
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.pdb
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\WebService_RFIDReader.dll.config
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\WebService_RFIDReader.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\WebService_RFIDReader.pdb
@@ -169,10 +166,6 @@ D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDRead
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\roslyn\VBCSCompiler.exe.config
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Antlr3.Runtime.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Impinj.OctaneSdk.dll
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.dll
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Modules.dll
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.SQLite.dll
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Wpf.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\LLRP.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\LLRP.Impinj.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -194,10 +187,6 @@ D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDRead
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\System.Web.WebPages.Razor.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\WebGrease.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Impinj.OctaneSdk.xml
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.xml
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Modules.xml
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.SQLite.xml
-D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\IronPython.Wpf.xml
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Dynamic.xml
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.xml
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\Microsoft.Scripting.Metadata.xml
@@ -226,3 +215,6 @@ D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDRead
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\fr\System.Web.WebPages.Deployment.resources.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\bin\fr\System.Web.WebPages.Razor.resources.dll
 D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.csproj.CopyComplete
+D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.dll
+D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.pdb
+D:\Study\M2-SSIO\S1\ProjetProtiqueconnecte\Repo\7-webService\WebService_RFIDReader\WebService_RFIDReader\obj\Debug\WebService_RFIDReader.csprojAssemblyReference.cache

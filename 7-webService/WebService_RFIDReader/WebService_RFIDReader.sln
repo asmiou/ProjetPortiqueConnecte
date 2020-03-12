@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService_RFIDReader", "WebService_RFIDReader\WebService_RFIDReader.csproj", "{1439B08E-95FA-47C4-9835-BA9CCC700EE0}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "webService", "C:\Users\hassi\Desktop\webService\webService.vdproj", "{C24341E3-4F38-401A-ADDA-5F8BA3BE7336}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +15,6 @@ Global
 		{1439B08E-95FA-47C4-9835-BA9CCC700EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1439B08E-95FA-47C4-9835-BA9CCC700EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1439B08E-95FA-47C4-9835-BA9CCC700EE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C24341E3-4F38-401A-ADDA-5F8BA3BE7336}.Debug|Any CPU.ActiveCfg = Debug
-		{C24341E3-4F38-401A-ADDA-5F8BA3BE7336}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
