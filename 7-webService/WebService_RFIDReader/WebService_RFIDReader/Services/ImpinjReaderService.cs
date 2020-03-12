@@ -19,7 +19,7 @@ namespace WebService_RFIDReader.Services
 
         public static List<string[]> listTags = new List<string[]>();
         public static List<Models.TagRead> modelTags = new List<Models.TagRead>();
-        public static string today { set; get; }
+        public string today { set; get; }
 
 
         public ImpinjReaderService(Models.Reader r, Models.Antenna a)

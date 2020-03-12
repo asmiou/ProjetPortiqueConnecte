@@ -254,6 +254,7 @@
     <Content Include="Assets\knn_Model.sav" />
     <Content Include="Assets\logreg_Model.sav" />
     <Content Include="Assets\script.py" />
+    <Content Include="Assets\flaskApp.py" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

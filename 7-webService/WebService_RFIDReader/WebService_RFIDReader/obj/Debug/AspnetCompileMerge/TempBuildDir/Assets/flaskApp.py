@@ -1,33 +1,26 @@
-﻿#Import library
-import sys
-
-import numpy as np
+﻿from flask import Flask, jsonify, make_response
+from flask import request as req
+import requests
 import pandas as pd
+from scipy.stats import variation 
+import pickle
+from sklearn.preprocessing import StandardScaler
 
+app = Flask(__name__)
 
-#from sklearn.preprocessing import StandardScaler
-from sklearn import preprocessing
-#import pickle
-import joblib as jl
+cols=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
+delimitor=','
+TOKEN=""
+PATH=""
+data = ""
+dataSet=""
+X_toPredict =""
+knnFilename = './knn_Model.sav'
 
-#parameters
-assetFolder=sys.argv[1]
-token=sys.argv[2]
-executed=False
-
-#Import Data
-#n=['TimesTamp','ECP', 'Antenna', 'RSSI']
-n=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
-p=assetFolder+'/1-RawData/'+token+'.csv'
-print(p)
-d=','
-
+#Import des données
 def importData(path, delimit,cols):
     return pd.read_csv(path, sep=delimit,names=cols)
 
-data=importData(p,d,n)
-
-print("imported...")
 # TYPAGE DES CHAMPS
 def typage(data):
     data['ECP']=data['ECP'].astype(str)
@@ -36,13 +29,7 @@ def typage(data):
     data['Antenna']=data['Antenna'].astype('int64')
     return data
 
-data=typage(data)
-
-print("typed...")
-
-#Build DataSet
-from scipy.stats import variation 
-
+#Build dataSet
 def generateDataSet(data, groupedBy):
     grouped_df = data.groupby(groupedBy) #On groupe les données par ..."Etiquetes"
     
@@ -92,52 +79,53 @@ def generateDataSet(data, groupedBy):
     
     return dataSet
 
-dataSet=generateDataSet(data,'ECP')
-
-print("build dataset...")
-
-#Export Data
-def exportData(data, path):
-    data.to_csv(path, index = None, header=False)
-
-#Export allinOne
-#exportPath = assetFolder+'/2-DataSet/'+token+'.csv'
-#exportData(dataSet, exportPath)
-
-#print("exported...")
-#executed=True
-
-#######################################################################################
+#Mise en echelle des données
 def scaleData(data):
     scaler = StandardScaler()
     #scaler.fit(data)
     return scaler.fit_transform(data)
 
-#X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
-X_toPredict = preprocessing.normalize(dataSet.loc[:,'RC':'A4'])
-print("Normalized...")
 
-knnFilename = assetFolder +'/knn_Model2.sav'
-print('path :',knnFilename)
+#Export Data
+def exportData(data, path):
+    data.to_csv(path, index = None, header=False)
+
+@app.route("/flaskapp/predict")
+def predictFromUrl():
+    TOKEN = req.args.get('token')
+    PATH="./1-RawData/"+TOKEN+".csv"
+
+    try:
+        #Chargement des données
+        data=importData(PATH,delimitor,cols)
+
+        #typage des données
+        data=typage(data)
+
+        #Regroupement par ECP
+        dataSet=generateDataSet(data,'ECP')
+
+        #Mise en echelle
+        X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
+
+        #LoadModel
+        knnModel = pickle.load(open(knnFilename, 'rb'))
+
+        #Prediction knn
+        knn_pred = knnModel.predict(X_toPredict)
+
+        #Rajout de la dataSet
+        dataSet['FP_KNN']=knn_pred
+
+        #Export des données
+        exportPath = './3-PredictedData/'+TOKEN+'.csv'
+        exportData(dataSet, exportPath)
+
+        print("Done...")
+        return make_response(jsonify({'message':'Prediction successfull', 'code':200}),200)
+    except:
+        print("Error found...")
+        return make_response(jsonify({'message':'Error script python', 'code':500}),500)
 
 
-#knnModel = pickle.load(open(knnFilename, 'rb'))
-knnModel = jl.load(knnFilename)
-
-print("load models...")
-
-knn_pred = knnModel.predict(X_toPredict)
-
-print("prediction...")
-
-dataSet['FP_KNN']=knn_pred
-
-print("Done...")
-print(dataSet)
-
-exportPath = assetFolder+'/3-PredictedData/'+token+'.csv'
-exportData(dataSet, exportPath)
-
-print("exported Done....")
-
-
+app.run(debug=True)

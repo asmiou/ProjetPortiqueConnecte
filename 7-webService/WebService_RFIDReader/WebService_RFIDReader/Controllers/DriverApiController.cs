@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Http;
@@ -17,80 +18,50 @@ namespace WebService_RFIDReader.Controllers
         Models.Reader myReader;
         Models.Antenna antenna;
         Services.ImpinjReaderService readerService;
-        Services.RunPythonScript runPython;
-
+        HttpClient httpClient;
+        string token;
 
 
         public DriverApiController()
         {
-            //setting = new Services.LoadSettings();
-            //myReader = setting.reader;
-            //antenna = setting.antenna;
-            //readerService = new Services.ImpinjReaderService(myReader, antenna);
-            runPython = new Services.RunPythonScript();
-
+            setting = new Services.LoadSettings();
+            myReader = setting.reader;
+            antenna = setting.antenna;
+            readerService = new Services.ImpinjReaderService(myReader, antenna);
+            httpClient = new HttpClient();
+            token = readerService.today;
 
         }
 
         [HttpGet]
         [Route("start")]
-        public void start()
+        public void startScan()
         {
             try
             {
-                //readerService.ConnectToReader();
-                //readerService.startScan();
-                System.Diagnostics.Debug.WriteLine("Started...");
+                readerService.ConnectToReader();
+                readerService.startScan();
+                Debug.WriteLine("Started...");
             }
             catch (Exception e)
             {
                 throw e;
             }
-            
-            
         }
 
         [HttpGet]
         [Route("stop")]
-        public void stop()
+        public async Task<string> StopScan()
         {
             try
             {
-                //readerService.stopScan();
-                //string rawData = readerService.prefixPath + "_scan.csv";
-                //buildDataSet(rawData);
-                //string train = readerService.prefixPath + "_trainSet.csv";
-                //string test = readerService.prefixPath + "_testSet.csv";
-                //string dataSet = readerService.prefixPath + "_dataSet.csv";
-                //knnPredict(train, test, dataSet);
-
-                //pythonService.hello();
-                string path = HostingEnvironment.MapPath(@"~/Assets");
-                runPython.exectScript(path, "20200310142930");
-                //runPython.buildDataSet(path, "20200310142930");
-                //runPython.predictData(path, "20200310142930");
-
-                /*
-                if (runPython.buildDataSet(path, "20200310142930"))
-                {
-                    Debug.WriteLine("data builded...");
-
-                    if (runPython.predictData(path, "20200310142930"))
-                    {
-                        Debug.WriteLine("data predicted...");
-                    }
-                    else
-                    {
-                        Debug.WriteLine("data not predict...");
-                    }
-                    
-                }
-                else
-                {
-                    Debug.WriteLine("data not build...");
-                }
-                */
-
+                Debug.WriteLine("begin...  ");
+                //string uri = "http://127.0.0.1:5000/flaskapp/predict?token=" + "20200310142930";
+                string uri = "http://127.0.0.1:5000/flaskapp/predict?token=" + token;
+                Debug.WriteLine("url : " + uri);
+                string response = await httpClient.GetStringAsync(uri);
+                Debug.WriteLine("Response : "+response);
+                return response;
             }
             catch (Exception e)
             {
