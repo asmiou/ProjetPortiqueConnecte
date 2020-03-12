@@ -1,4 +1,4 @@
-﻿from flask import Flask
+﻿from flask import Flask, jsonify, make_response
 from flask import request as req
 import requests
 import pandas as pd
@@ -86,68 +86,46 @@ def scaleData(data):
     return scaler.fit_transform(data)
 
 
-# Rest api starts here
-# get api to get finished tags
-def call_api_test():
-    response = requests.get('https://localhost:44302/api/Tag', verify=False).content
-    print(response)
-
+#Export Data
+def exportData(data, path):
+    data.to_csv(path, index = None, header=False)
 
 @app.route("/flaskapp/predict")
-def received_from_c_sharp():
+def predictFromUrl():
     TOKEN = req.args.get('token')
     PATH="./1-RawData/"+TOKEN+".csv"
 
-    #Chargement des données
-    data=importData(PATH,delimitor,cols)
+    try:
+        #Chargement des données
+        data=importData(PATH,delimitor,cols)
 
-    #typage des données
-    data=typage(data)
+        #typage des données
+        data=typage(data)
 
-    #Regroupement par ECP
-    dataSet=generateDataSet(data,'ECP')
+        #Regroupement par ECP
+        dataSet=generateDataSet(data,'ECP')
 
-    #Mise en echelle
-    X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
+        #Mise en echelle
+        X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
 
-    #LoadModel
-    knnModel = pickle.load(open(knnFilename, 'rb'))
+        #LoadModel
+        knnModel = pickle.load(open(knnFilename, 'rb'))
 
-    #Prediction knn
-    knn_pred = knnModel.predict(X_toPredict)
+        #Prediction knn
+        knn_pred = knnModel.predict(X_toPredict)
 
-    dataSet['FP_KNN']=knn_pred
-    
-    print("Start predict...", dataSet.head(5))
-    #getrawdata = requests.get('https://localhost:44302/api/Tag', verify=False)
-    
-    return "End predict ... "+ len(dataSet)
+        #Rajout de la dataSet
+        dataSet['FP_KNN']=knn_pred
 
+        #Export des données
+        exportPath = './3-PredictedData/'+TOKEN+'.csv'
+        exportData(dataSet, exportPath)
 
-
-
-
-
-
-
-
-
-
-
-
-
-#when C# will be notified it will call this uri to get predicted data
-@app.route("/apipython/getPredictedData")
-def tobe_sent_to_c_sharp():
-
-    return "Take your fucking shit back"
-
-# client to be called from C#
-
-def notify_c_sharp():
-    awake_c_s = requests.get('https://localhost:44302/api/Tag/wakeup', verify=False)
-    if awake_c_s.text == '200':
-        print('C# received the command it should be awake now')
+        print("Done...")
+        return make_response(jsonify({'message':'Prediction successfull', 'code':200}),200)
+    except:
+        print("Error found...")
+        return make_response(jsonify({'message':'Error script python', 'code':500}),500)
 
 
 app.run(debug=True)
