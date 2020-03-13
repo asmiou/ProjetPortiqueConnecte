@@ -17,6 +17,7 @@ executed=False
 
 #Import Data
 #n=['TimesTamp','ECP', 'Antenna', 'RSSI']
+
 n=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
 p=assetFolder+'/1-RawData/'+token+'.csv'
 print(p)

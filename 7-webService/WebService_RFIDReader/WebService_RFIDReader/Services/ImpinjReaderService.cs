@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,7 +16,7 @@ namespace WebService_RFIDReader.Services
         static ImpinjReader reader = new ImpinjReader();
         Models.Reader myReader;
         Models.Antenna myAntenna;
-        static string delimit = ";";
+        static string delimit = ",";
         public string prefixPath { set; get; }
 
         public static List<string[]> listTags = new List<string[]>();
@@ -119,22 +121,25 @@ namespace WebService_RFIDReader.Services
         {
             foreach (Tag tag in report)
             {
+                string rssi = tag.PeakRssiInDbm.ToString(CultureInfo.GetCultureInfo("en-GB"));
+                string ecp = tag.Epc.ToString();
+                ecp = ecp.Replace(" ",String.Empty);
                 Models.TagRead myTags = new Models.TagRead(tag.LastSeenTime.ToString(), tag.Epc.ToString(), tag.PeakRssiInDbm, tag.AntennaPortNumber);
                 modelTags.Add(myTags);
 
-                string[] t = { tag.Epc + delimit + tag.PeakRssiInDbm + delimit + tag.LastSeenTime + delimit + tag.AntennaPortNumber };
+                string[] t = { ecp + delimit + rssi + delimit + tag.LastSeenTime + delimit + tag.AntennaPortNumber };
+                //Debug.WriteLine(ecp + delimit + rssi + delimit + tag.LastSeenTime + delimit + tag.AntennaPortNumber);
                 listTags.Add(t);
             }
         }
 
-        private void saveOnfile()
+        private void saveOnfile(string token)
         {
             //string today = DateTime.Now.ToString().Replace('/', '_').Replace(':', '-').Replace(' ', 'H');
-            today = DateTime.Now.ToString("yyyyMMddHHmmss");
-            string appDataFolder = HttpContext.Current.Server.MapPath("~/App_Data/1-RawData/");
+            
+            string appDataFolder = HttpContext.Current.Server.MapPath("~/Assets/1-RawData/");
 
-            string filename = "scan";
-            string filepath = appDataFolder + today + "_" + filename + ".csv";
+            string filepath = appDataFolder+token+".csv";
 
             try
             {
@@ -151,17 +156,19 @@ namespace WebService_RFIDReader.Services
             }
         }
 
-        public void stopScan()
+        public void stopScan(string token)
         {
             Console.WriteLine("Stoped");
             reader.Stop();
-            saveOnfile();
+            saveOnfile(token);
             reader.Disconnect();
         }
 
         public void startScan()
         {
-            Console.WriteLine("Started");
+           // Console.WriteLine("Started");
+            today = DateTime.Now.ToString("yyyyMMddHHmmss");
+            Debug.WriteLine("Service Token. " + today);
             //ConnectToReader();
             configureReader();
         }

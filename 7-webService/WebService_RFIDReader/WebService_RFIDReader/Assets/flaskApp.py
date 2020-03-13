@@ -9,17 +9,18 @@ from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
 
 cols=['ECP','RSSI','TimesTamp', 'Antenna']
-delimitor=';'
-
-
 #cols=['TimesTamp', 'ECP', 'Antenna', 'RSSI', 'Channel', 'Adress']
-#delimitor=','
+
+delimitor=','
 TOKEN=""
 PATH=""
 data = ""
 dataSet=""
 X_toPredict =""
+
 knnFilename = './knn_Model.sav'
+regLogFilename = './logreg_Model.sav'
+svmFilename = './gaussianSVM_Model.sav'
 
 #Import des données
 def importData(path, delimit,cols):
@@ -93,9 +94,33 @@ def scaleData(data):
 def exportData(data, path):
     data.to_csv(path, index = None, header=False)
 
+#System de vote entre les 3 models de prediction
+def voteSystem(data):
+    verdict=[]
+    for d in data.values:
+        cote= d[-3]+d[-2]+d[-1]
+        
+        if(cote>=2):
+            verdict.append(1)  
+        else:
+            verdict.append(0)
+    return verdict
+
+
+@app.route("/")
+def index():
+    try:
+        return make_response(jsonify({'message':'Server is run...', 'code':200}),200)
+    except:
+        return make_response(jsonify({'message':'Server is off...', 'code':500}),500)
+
 @app.route("/flaskapp/predict")
 def predictFromUrl():
     TOKEN = req.args.get('token')
+
+    if TOKEN is None:
+        return make_response(jsonify({'message':'Error le token ne doit pas être vide', 'code':404}),404)
+
     PATH="./1-RawData/"+TOKEN+".csv"
 
     try:
@@ -114,20 +139,38 @@ def predictFromUrl():
         #Mise en echelle
         X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
 
+        #-----------Knn
         #LoadModel
         knnModel = pickle.load(open(knnFilename, 'rb'))
-
         #Prediction knn
         knn_pred = knnModel.predict(X_toPredict)
 
+        #-----------Regression logistique
+        #LoadModel
+        regLogModel = pickle.load(open(regLogFilename, 'rb'))
+        #Prediction RegLog
+        regLog_pred = regLogModel.predict(X_toPredict)
+
+        #-----------SVM
+        #LoadModel
+        svmModel = pickle.load(open(svmFilename, 'rb'))
+        #Prediction knn
+        svm_pred = svmModel.predict(X_toPredict)
+
         #Rajout de la dataSet
+        dataSet['FP_RL']=regLog_pred
+        dataSet['FP_SVM']=svm_pred
         dataSet['FP_KNN']=knn_pred
+
+        #Systeme de vote
+        verdict=voteSystem(dataSet)
+        dataSet['VERDICT']=verdict
 
         #Export des données
         #exportPath = './3-PredictedData/'+TOKEN+'.csv'
         #exportData(dataSet, exportPath)
 
-        classified = {'ECP':list(dataSet['ECP']), 'FP':list(dataSet['FP_KNN'])}
+        classified = {'ECP':list(dataSet['ECP']), 'FP':list(dataSet['VERDICT'])}
 
         msg={'message':'Prediction successfull', 
         'code':200,
@@ -147,5 +190,5 @@ def checkConnexion():
         return make_response(jsonify({'message':'Error server off', 'code':500}),500)
 
 
-app.run(debug=True)
-#app.run()
+#app.run(debug=True)
+app.run()

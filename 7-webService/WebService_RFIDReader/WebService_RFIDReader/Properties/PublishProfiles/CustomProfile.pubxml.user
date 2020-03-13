@@ -79,7 +79,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/10/2020 18:02:53</publishTime>
     </File>
     <File Include="Assets/flaskApp.py">
-      <publishTime>03/12/2020 13:26:21</publishTime>
+      <publishTime>03/12/2020 19:30:25</publishTime>
     </File>
     <File Include="Assets/gaussianSVC_Model.sav">
       <publishTime>03/10/2020 18:04:58</publishTime>
@@ -100,7 +100,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/12/2020 00:19:12</publishTime>
     </File>
     <File Include="Assets/settings.json">
-      <publishTime>03/06/2020 12:08:49</publishTime>
+      <publishTime>03/12/2020 17:29:47</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>03/06/2020 12:08:50</publishTime>
@@ -109,10 +109,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/06/2020 12:08:50</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/12/2020 14:45:24</publishTime>
+      <publishTime>03/12/2020 19:36:59</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/12/2020 14:45:24</publishTime>
+      <publishTime>03/12/2020 19:36:59</publishTime>
     </File>
     <File Include="bin/fr/System.Net.Http.Formatting.resources.dll">
       <publishTime>11/28/2018 13:00:48</publishTime>
@@ -367,10 +367,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/06/2020 12:08:52</publishTime>
     </File>
     <File Include="bin/WebService_RFIDReader.dll">
-      <publishTime>03/12/2020 14:41:44</publishTime>
+      <publishTime>03/12/2020 19:24:26</publishTime>
     </File>
     <File Include="bin/WebService_RFIDReader.pdb">
-      <publishTime>03/12/2020 14:41:44</publishTime>
+      <publishTime>03/12/2020 19:24:26</publishTime>
     </File>
     <File Include="Content/bootstrap-grid.css">
       <publishTime>03/05/2020 15:42:49</publishTime>
@@ -418,7 +418,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/11/2020 14:35:02</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/12/2020 14:45:15</publishTime>
+      <publishTime>03/12/2020 19:36:51</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>03/05/2020 15:42:49</publishTime>
@@ -751,7 +751,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https:
       <publishTime>03/06/2020 12:08:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/11/2020 23:40:40</publishTime>
+      <publishTime>03/12/2020 19:36:47</publishTime>
     </File>
   </ItemGroup>
 </Project>
