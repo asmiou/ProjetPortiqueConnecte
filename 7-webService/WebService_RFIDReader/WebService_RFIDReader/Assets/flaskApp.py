@@ -27,10 +27,10 @@ def importData(path, delimit,cols):
 
 # TYPAGE DES CHAMPS
 def typage(data):
-    #data['ECP']=data['ECP'].astype(str)
+    data['ECP']=data['ECP'].astype(str)
     data['TimesTamp']=data['TimesTamp'].astype('int64')
     data['RSSI']=data['RSSI'].astype('float64')
-    #data['Antenna']=data['Antenna'].astype('int64')
+    data['Antenna']=data['Antenna'].astype('int64')
     return data
 
 #Build dataSet
@@ -86,7 +86,6 @@ def generateDataSet(data, groupedBy):
 #Mise en echelle des données
 def scaleData(data):
     scaler = StandardScaler()
-    #scaler.fit(data)
     return scaler.fit_transform(data)
 
 
@@ -98,46 +97,55 @@ def exportData(data, path):
 def predictFromUrl():
     TOKEN = req.args.get('token')
     PATH="./1-RawData/"+TOKEN+".csv"
-    print(PATH)
-   # try:
-    #Chargement des données
-    data=importData(PATH,delimitor,cols)
-    print("imported...", len(data))
-    print(data.head(5))
 
-    #typage des données
-    data=typage(data)
-    print("typed...")
+    try:
+        #Chargement des données
+        data=importData(PATH,delimitor,cols)
+        
+        #remove naValues
+        data=data.dropna()
 
-    #Regroupement par ECP
-    dataSet=generateDataSet(data,'ECP')
-    print("regrouped..." , len(dataSet))
+        #typage des données
+        data=typage(data)
 
-    #Mise en echelle
-    X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
-    print("xpredict...")
+        #Regroupement par ECP
+        dataSet=generateDataSet(data,'ECP')
 
-    #LoadModel
-    knnModel = pickle.load(open(knnFilename, 'rb'))
-    print("model loaded...")
-    #Prediction knn
-    knn_pred = knnModel.predict(X_toPredict)
-    print("predicted...")
+        #Mise en echelle
+        X_toPredict = scaleData(dataSet.loc[:,'RC':'A4'])
 
-    #Rajout de la dataSet
-    dataSet['FP_KNN']=knn_pred
-    print("dataset predict...", dataSet.shape)
+        #LoadModel
+        knnModel = pickle.load(open(knnFilename, 'rb'))
 
-    #Export des données
-    exportPath = './3-PredictedData/'+TOKEN+'.csv'
-    exportData(dataSet, exportPath)
-    print("exported...")
+        #Prediction knn
+        knn_pred = knnModel.predict(X_toPredict)
 
-    print("Done...")
-    return make_response(jsonify({'message':'Prediction successfull', 'code':200}),200)
-   # except:
-   #     print("Error found...")
-    #    return make_response(jsonify({'message':'Error script python', 'code':500}),500) '''
+        #Rajout de la dataSet
+        dataSet['FP_KNN']=knn_pred
+
+        #Export des données
+        #exportPath = './3-PredictedData/'+TOKEN+'.csv'
+        #exportData(dataSet, exportPath)
+
+        classified = {'ECP':list(dataSet['ECP']), 'FP':list(dataSet['FP_KNN'])}
+
+        msg={'message':'Prediction successfull', 
+        'code':200,
+        'data':{'token':TOKEN, 'lenght':len(dataSet), 'classified':classified}
+        }
+
+        return make_response(jsonify(msg),200)
+    except:
+        return make_response(jsonify({'message':'Error script python', 'code':500}),500)
+
+@app.route("/flaskapp/check-connect")
+def checkConnexion():
+    try:
+
+        return make_response(jsonify({'message':'Success server on', 'code':200}),200)
+    except:
+        return make_response(jsonify({'message':'Error server off', 'code':500}),500)
 
 
 app.run(debug=True)
+#app.run()
