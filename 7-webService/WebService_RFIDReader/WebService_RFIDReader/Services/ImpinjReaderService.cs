@@ -17,11 +17,9 @@ namespace WebService_RFIDReader.Services
         Models.Reader myReader;
         Models.Antenna myAntenna;
         static string delimit = ",";
-        public string prefixPath { set; get; }
 
         public static List<string[]> listTags = new List<string[]>();
         public static List<Models.TagRead> modelTags = new List<Models.TagRead>();
-        public string today { set; get; }
 
 
         public ImpinjReaderService(Models.Reader r, Models.Antenna a)
@@ -87,7 +85,6 @@ namespace WebService_RFIDReader.Services
             catch (Exception e)
             {
                 throw e;
-                //Console.WriteLine("Erreur in Enable All: " + e.ToString());
             }
         }
 
@@ -135,8 +132,6 @@ namespace WebService_RFIDReader.Services
 
         private void saveOnfile(string token)
         {
-            //string today = DateTime.Now.ToString().Replace('/', '_').Replace(':', '-').Replace(' ', 'H');
-            
             string appDataFolder = HttpContext.Current.Server.MapPath("~/Assets/1-RawData/");
 
             string filepath = appDataFolder+token+".csv";
@@ -148,7 +143,6 @@ namespace WebService_RFIDReader.Services
                 {
                     file.WriteLine(string.Join(delimit, t));
                 }
-                prefixPath = today;
             }
             catch (Exception e)
             {
@@ -158,7 +152,6 @@ namespace WebService_RFIDReader.Services
 
         public void stopScan(string token)
         {
-            Console.WriteLine("Stoped");
             reader.Stop();
             saveOnfile(token);
             reader.Disconnect();
@@ -166,10 +159,7 @@ namespace WebService_RFIDReader.Services
 
         public void startScan()
         {
-           // Console.WriteLine("Started");
-            today = DateTime.Now.ToString("yyyyMMddHHmmss");
-            Debug.WriteLine("Service Token. " + today);
-            //ConnectToReader();
+            ConnectToReader();
             configureReader();
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -29,20 +28,20 @@ namespace WebService_RFIDReader.Controllers
 
         [HttpGet]
         [Route("start")]
-        public HttpResponseMessage startScan()
+        public void startScan()
         {
             try
             {
                 readerService.ConnectToReader();
                 readerService.startScan();
                 string msg = "Code: 200, Message: Lecture en coure ...";
-                return this.Request.CreateResponse(HttpStatusCode.OK,msg);
+                //return this.Request.CreateResponse(HttpStatusCode.OK,msg);
             }
             catch (Exception e)
             {
                 string msg = "Code: 500, Message: Erreur de lecture vérifier la connectivité du lecteur";
-                return this.Request.CreateResponse(HttpStatusCode.InternalServerError,msg);
-                //throw e;
+                //return this.Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+                throw e;
             }
         }
 
@@ -55,12 +54,9 @@ namespace WebService_RFIDReader.Controllers
             {
                 token = DateTime.Now.ToString("yyyyMMddHHmmss");
                 readerService.stopScan(token);
-                Debug.WriteLine("Stoped...  ");
                 //string uri = "http://127.0.0.1:5000/flaskapp/predict?token=" + "20200310142930";
                 string uri = "http://127.0.0.1:5000/flaskapp/predict?token=" + token;
-                Debug.WriteLine("url : " + uri);
                 string response = await httpClient.GetStringAsync(uri);
-                Debug.WriteLine("Response : "+response);
                 return this.Request.CreateResponse(HttpStatusCode.OK, response);
             }
             catch (Exception e)

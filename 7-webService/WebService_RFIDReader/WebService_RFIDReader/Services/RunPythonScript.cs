@@ -8,15 +8,7 @@ namespace WebService_RFIDReader.Services
     {
         public ProcessStartInfo psi;
 
-        public RunPythonScript()
-        {
-            /*psi = new ProcessStartInfo();
-            psi.FileName = @"E:\ProgramFiles\Anaconda3\python.exe";
-            psi.UseShellExecute = false;
-            psi.CreateNoWindow = true;
-            psi.RedirectStandardOutput = true;
-            psi.RedirectStandardError = true;*/
-        }
+        public RunPythonScript(){}
 
         public Boolean exectScript(string assetFolder, string token)
         {
